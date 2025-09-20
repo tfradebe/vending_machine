@@ -1,4 +1,4 @@
-package za.co.tfradebe.vendingmachine.inventory.dto;
+package za.co.tfradebe.vendingmachine.inventory.endpoint.dto;
 
 import lombok.Getter;
 import lombok.Setter;
