@@ -2,7 +2,7 @@ package za.co.tfradebe.vendingmachine.inventory.db.repos;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.lang.NonNullApi;
+import org.springframework.lang.NonNull;
 import za.co.tfradebe.vendingmachine.inventory.db.entities.ProductEntity;
 
 import java.util.List;
@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 
 public interface ProductRepo extends CrudRepository<ProductEntity, Long> {
 
-    @Query("SELECT p FROM ProductEntity p")
     @Override
+    @NonNull
+    @Query("SELECT p FROM ProductEntity p")
     List<ProductEntity> findAll();
 
     default Map<Long, ProductEntity> findAllAsMap(){

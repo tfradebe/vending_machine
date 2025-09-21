@@ -1,4 +1,4 @@
-package za.co.tfradebe.vendingmachine.inventory.service.exception;
+package za.co.tfradebe.vendingmachine.inventory.exception;
 
 public class NotEnoughQuantityException extends RuntimeException {
     public NotEnoughQuantityException(String message){

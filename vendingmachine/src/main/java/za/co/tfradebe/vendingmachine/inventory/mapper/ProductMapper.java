@@ -2,7 +2,7 @@ package za.co.tfradebe.vendingmachine.inventory.mapper;
 
 import org.mapstruct.Mapper;
 import za.co.tfradebe.vendingmachine.inventory.db.entities.ProductEntity;
-import za.co.tfradebe.vendingmachine.inventory.endpoint.dto.ProductDao;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductDao;
 
 import java.util.List;
 

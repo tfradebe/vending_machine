@@ -1,4 +1,4 @@
-package za.co.tfradebe.vendingmachine.inventory.endpoint.dto;
+package za.co.tfradebe.vendingmachine.inventory.api.v1.dto;
 
 import java.util.List;
 

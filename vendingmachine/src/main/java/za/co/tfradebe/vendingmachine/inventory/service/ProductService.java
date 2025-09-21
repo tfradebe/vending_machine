@@ -2,10 +2,10 @@ package za.co.tfradebe.vendingmachine.inventory.service;
 
 import org.springframework.stereotype.Service;
 import za.co.tfradebe.vendingmachine.inventory.db.repos.ProductRepo;
-import za.co.tfradebe.vendingmachine.inventory.endpoint.dto.ProductDao;
-import za.co.tfradebe.vendingmachine.inventory.endpoint.dto.ProductRequest;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductDao;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductRequest;
 import za.co.tfradebe.vendingmachine.inventory.mapper.ProductMapper;
-import za.co.tfradebe.vendingmachine.inventory.service.exception.NotEnoughQuantityException;
+import za.co.tfradebe.vendingmachine.inventory.exception.NotEnoughQuantityException;
 
 import java.util.List;
 

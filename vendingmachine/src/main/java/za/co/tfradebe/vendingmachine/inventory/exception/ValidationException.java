@@ -1,7 +1,7 @@
-package za.co.tfradebe.vendingmachine.inventory.endpoint.exception;
+package za.co.tfradebe.vendingmachine.inventory.exception;
 
 import lombok.Data;
-import za.co.tfradebe.vendingmachine.inventory.endpoint.dto.ErrorDetail;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ErrorDetail;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package za.co.tfradebe.vendingmachine.mapper;
+package za.co.tfradebe.vendingmachine.inventory.mapper;
 
 import org.junit.jupiter.api.Test;
 import za.co.tfradebe.vendingmachine.inventory.db.entities.ProductEntity;
