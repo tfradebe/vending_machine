@@ -2,8 +2,6 @@ package za.co.tfradebe.vendingmachine.inventory.mapper;
 
 import org.junit.jupiter.api.Test;
 import za.co.tfradebe.vendingmachine.inventory.db.entities.ProductEntity;
-import za.co.tfradebe.vendingmachine.inventory.mapper.ProductMapper;
-import za.co.tfradebe.vendingmachine.inventory.mapper.ProductMapperImpl;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class ProductMapperTest {
         ProductEntity entity = new ProductEntity();
         entity.setId(1L);
         entity.setName("TestName");
-        entity.setPrice(10.99);
+        entity.setPrice(20);
         entity.setQuantity(10);
 
         var response = classUnderTest.map(entity);
@@ -27,7 +25,7 @@ public class ProductMapperTest {
         assertNotNull(response);
         assertEquals(1L, response.getId(),"id failed to test");
         assertEquals("TestName", response.getName(),"name failed to test");
-        assertEquals(10.99, response.getPrice(),"price failed to test");
+        assertEquals(20, response.getPrice(),"price failed to test");
         assertEquals(10, response.getQuantity(),"quantity failed to test");
     }
 

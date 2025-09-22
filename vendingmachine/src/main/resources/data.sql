@@ -3,3 +3,15 @@ INSERT INTO PRODUCT (name,price,quantity) VALUES ('NICKNACK',10.0,10);
 INSERT INTO PRODUCT (name,price,quantity) VALUES ('FANTA',15.0,10);
 INSERT INTO PRODUCT (name,price,quantity) VALUES ('COCACOLA',15.0,10);
 INSERT INTO PRODUCT (name,price,quantity) VALUES ('REDBULL',25.0,10);
+
+
+// Load money
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('ONE',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('TWO',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('FIVE',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('TEN',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('TWENTY',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('FIFTY',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('HUNDRED',10);
+INSERT INTO LOADED_MONEY (amount,quantity) VALUES ('TWO_HUNDRED',10);
+

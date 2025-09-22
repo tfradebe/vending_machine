@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class ProductRequest {
-    @NotNull
-    @NotEmpty
+    @NotNull( message = "data is required")
+    @NotEmpty( message = "data is required")
     private List<ProductRequestData> data;
 }

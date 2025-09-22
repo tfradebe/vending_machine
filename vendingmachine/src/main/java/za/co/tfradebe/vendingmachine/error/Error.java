@@ -1,4 +1,4 @@
-package za.co.tfradebe.vendingmachine.inventory.api.v1.dto;
+package za.co.tfradebe.vendingmachine.error;
 
 import lombok.Getter;
 import lombok.Setter;

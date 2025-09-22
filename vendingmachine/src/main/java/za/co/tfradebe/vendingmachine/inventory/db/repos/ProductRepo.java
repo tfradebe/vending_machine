@@ -13,7 +13,6 @@ public interface ProductRepo extends CrudRepository<ProductEntity, Long> {
 
     @Override
     @NonNull
-    @Query("SELECT p FROM ProductEntity p")
     List<ProductEntity> findAll();
 
     default Map<Long, ProductEntity> findAllAsMap(){

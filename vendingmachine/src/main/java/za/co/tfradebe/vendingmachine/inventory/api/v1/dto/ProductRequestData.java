@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class ProductRequestData {
-    @NotNull
+    @NotNull(message = "id is required")
     private Long id;
-    @NotNull
+    @NotNull(message = "quantity is required")
     private Integer quantityRequired;
 }

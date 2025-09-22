@@ -4,14 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import za.co.tfradebe.vendingmachine.inventory.api.v1.ProductEndpoint;
-import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ErrorDetail;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.ProductController;
+import za.co.tfradebe.vendingmachine.error.ErrorDetail;
 import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponse;
 
 import java.util.List;
 
 
-@ControllerAdvice(assignableTypes = {ProductEndpoint.class})
+@ControllerAdvice(assignableTypes = {ProductController.class})
 public class ProductApiExceptionHandler {
 
     @ExceptionHandler(NotEnoughQuantityException.class)

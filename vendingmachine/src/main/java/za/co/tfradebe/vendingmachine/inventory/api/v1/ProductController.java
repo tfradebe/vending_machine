@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductRequest;
 import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponse;
-import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ResponseUtil;
+import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponseUtil;
 import za.co.tfradebe.vendingmachine.inventory.service.ProductService;
 
-@RestController()
+@RestController
 @RequestMapping("/api/v1/products")
 @Slf4j
-public class ProductEndpoint {
+public class ProductController {
 
     private final ProductService productService;
 
-    public ProductEndpoint(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -28,7 +28,7 @@ public class ProductEndpoint {
     public ResponseEntity<ProductResponse> findAll() {
         try {
             var products = productService.findAll();
-            var response = ResponseUtil.createSuccessResponse(products);
+            var response = ProductResponseUtil.createSuccessResponse(products);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Something went wrong with findAll ", e);

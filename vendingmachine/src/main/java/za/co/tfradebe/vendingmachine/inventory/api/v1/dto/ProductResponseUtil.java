@@ -2,9 +2,9 @@ package za.co.tfradebe.vendingmachine.inventory.api.v1.dto;
 
 import java.util.List;
 
-public class ResponseUtil {
+public class ProductResponseUtil {
 
-    private ResponseUtil(){}
+    private ProductResponseUtil(){}
 
     public static ProductResponse createSuccessResponse(List<ProductDao> products){
         var response = new ProductResponse();
