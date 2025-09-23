@@ -1,7 +1,6 @@
 package za.co.tfradebe.vendingmachine.inventory.db.repos;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 import za.co.tfradebe.vendingmachine.inventory.db.entities.ProductEntity;
 
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
 @Repository
 public interface ProductRepo extends CrudRepository<ProductEntity, Long> {
     @Override
-    @NonNull
     List<ProductEntity> findAll();
 
     default Map<Long, ProductEntity> findAllAsMap(){
