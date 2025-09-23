@@ -8,6 +8,6 @@ import lombok.Setter;
 public class ProductDao {
     private Long id;
     private String name;
-    private double price;
+    private int price;
     private int quantity;
 }

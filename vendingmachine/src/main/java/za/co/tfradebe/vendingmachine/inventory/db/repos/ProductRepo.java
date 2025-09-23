@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public interface ProductRepo extends CrudRepository<ProductEntity, Long> {
 
-    @Query("SELECT p FROM ProductEntity p")
     @Override
+    @Query("SELECT p FROM ProductEntity p")
     List<ProductEntity> findAll();
 
     default Map<Long, ProductEntity> findAllAsMap(){

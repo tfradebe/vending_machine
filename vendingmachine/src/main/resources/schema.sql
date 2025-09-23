@@ -1,8 +1,7 @@
 CREATE TABLE IF NOT EXISTS PRODUCT (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    price DOUBLE NOT NULL,
-    quantity INT NOT NULL,
-    created TIMESTAMP NOT NULL,
-    last_modified TIMESTAMP NOT NULL
+    location VARCHAR(2) NOT NULL,
+    price INT NOT NULL,
+    quantity INT NOT NULL
 );
