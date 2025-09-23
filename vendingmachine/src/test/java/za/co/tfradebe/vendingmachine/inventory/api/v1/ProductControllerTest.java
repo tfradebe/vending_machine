@@ -26,7 +26,7 @@ public class ProductControllerTest {
 
     @Test
     public void should_return_all() throws Exception {
-        when(productService.findAll()).thenReturn(List.of(new ProductDao(1L,"Product1",5,6),new ProductDao(2L,"Product2",7,7)));
+        when(productService.findAll()).thenReturn(List.of(new ProductDao(1L,"Product1","AA",5,6),new ProductDao(2L,"Product2","AA",7,7)));
 
         mockMvc.perform(get("/api/v1/products")).andExpect(status().isOk());
     }

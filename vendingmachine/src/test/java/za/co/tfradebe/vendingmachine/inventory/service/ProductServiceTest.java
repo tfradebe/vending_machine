@@ -30,8 +30,8 @@ public class ProductServiceTest {
 
     @Test
     public void find_all(){
-        when(productRepo.findAll()).thenReturn(List.of(new ProductEntity(1L, "Product1", 5, 5),new ProductEntity(2L, "Product2", 5, 5)));
-        when(productMapper.map(anyList())).thenReturn(List.of(new ProductDao(1L, "Product1", 5, 5),new ProductDao(2L, "Product2", 5, 5)));
+        when(productRepo.findAll()).thenReturn(List.of(new ProductEntity(1L, "Product1","AA", 5, 5),new ProductEntity(2L, "Product2","AB", 5, 5)));
+        when(productMapper.map(anyList())).thenReturn(List.of(new ProductDao(1L, "Product1","AA", 5, 5),new ProductDao(2L, "Product2","AA", 5, 5)));
         var result = productService.findAll();
         assertNotNull(result);
         assertEquals(2,result.size());
@@ -39,7 +39,7 @@ public class ProductServiceTest {
 
     @Test
     public void checkout_success(){
-        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1", 5, 5),2L,new ProductEntity(2L, "Product2", 5, 5)));
+        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1","AA", 5, 5),2L,new ProductEntity(2L, "Product2","AA", 5, 5)));
         var request = new ProductRequest();
         var data = new ProductRequestData();
         data.setId(1L);
@@ -54,7 +54,7 @@ public class ProductServiceTest {
 
     @Test
     public void test_checkout_more_quantity(){
-        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1", 5, 5),2L,new ProductEntity(2L, "Product2", 5, 5)));
+        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1","AA", 5, 5),2L,new ProductEntity(2L, "Product2","AA", 5, 5)));
         var request = new ProductRequest();
         var data = new ProductRequestData();
         data.setId(1L);
@@ -67,7 +67,7 @@ public class ProductServiceTest {
 
     @Test
     public void test_checkout_not_available_product(){
-        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1", 5, 5),2L,new ProductEntity(2L, "Product2", 5, 5)));
+        when(productRepo.findAllAsMap()).thenReturn(Map.of(1L,new ProductEntity(1L, "Product1","AA", 5, 5),2L,new ProductEntity(2L, "Product2","AA", 5, 5)));
         var request = new ProductRequest();
         var data = new ProductRequestData();
         data.setId(10L);
