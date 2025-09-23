@@ -7,8 +7,6 @@ import lombok.*;
 @Table(name = "PRODUCT")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +15,4 @@ public class ProductEntity {
     private String location;
     private int price;
     private int quantity;
-
-    public ProductEntity(String name, int price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
 }
