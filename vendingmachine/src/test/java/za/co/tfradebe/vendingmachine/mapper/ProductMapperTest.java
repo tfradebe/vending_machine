@@ -19,7 +19,7 @@ public class ProductMapperTest {
         ProductEntity entity = new ProductEntity();
         entity.setId(1L);
         entity.setName("TestName");
-        entity.setPrice(10.99);
+        entity.setPrice(10);
         entity.setQuantity(10);
 
         var response = classUnderTest.map(entity);
@@ -27,7 +27,7 @@ public class ProductMapperTest {
         assertNotNull(response);
         assertEquals(1L, response.getId(),"id failed to test");
         assertEquals("TestName", response.getName(),"name failed to test");
-        assertEquals(10.99, response.getPrice(),"price failed to test");
+        assertEquals(10, response.getPrice(),"price failed to test");
         assertEquals(10, response.getQuantity(),"quantity failed to test");
     }
 
