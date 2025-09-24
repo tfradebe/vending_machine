@@ -160,3 +160,7 @@ Response
 	"code": null,
 	"error": null
 }
+
+logs
+
+2025-09-24T15:43:25.282+02:00 ERROR 14805 --- [vendingmachine] [nio-9090-exec-1] z.c.t.v.d.api.v1.DispenseController      : Dispense the following amounts DispenseRequest(change=40, changeAsDenominators=[TWENTY_RAND, TWENTY_RAND])
