@@ -1,0 +1,31 @@
+
+GetDenominations
+
+Tells front end what money denominations are accepted
+GET
+http://localhost:9090/api/v1/payment
+response
+{
+	"status": "SUCCESS",
+	"code": null,
+	"error": null,
+	"data": {
+		"change": 388,
+		"changeAsDenominators": [
+			200,
+			100,
+			50,
+			20,
+			10,
+			5,
+			2,
+			1
+		]
+	}
+}
+
+
+GetMoneyInTheMachine
+Gets loaded money in the 
+GET
+http://localhost:9090/api/v1/payment/moneyOnMachine
