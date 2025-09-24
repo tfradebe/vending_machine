@@ -36,7 +36,7 @@ public class PaymentController {
             var response = AMOUNT.values();
             return new ResponseEntity<>(createSuccessResponse(List.of(response)), HttpStatus.OK);
         }catch (Exception e){
-            log.error("Something went wrong with checkout: ", e);
+            log.error("Something went wrong with getMoneyDenominators: ", e);
             throw e;
         }
     }
@@ -49,7 +49,7 @@ public class PaymentController {
             sortedMap.putAll(unsortedMap);
             return new ResponseEntity<>(sortedMap, HttpStatus.OK);
         }catch (Exception e){
-            log.error("Something went wrong with checkout: ", e);
+            log.error("Something went wrong with getMoneyOnMachine: ", e);
             throw e;
         }
     }
