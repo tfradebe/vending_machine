@@ -14,7 +14,4 @@ public interface MoneyRepo extends CrudRepository<MoneyEntity, Long> {
     @Override
     List<MoneyEntity> findAll();
 
-    default Map<AMOUNT, Integer> findAllAsMap(){
-        return findAll().stream().collect(Collectors.toMap(moneyEntity -> moneyEntity.getAmount() , moneyEntity -> moneyEntity.getQuantity()));
-    }
 }

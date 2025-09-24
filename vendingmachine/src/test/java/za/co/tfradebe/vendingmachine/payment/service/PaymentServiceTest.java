@@ -6,12 +6,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import za.co.tfradebe.vendingmachine.payment.db.AMOUNT;
+import za.co.tfradebe.vendingmachine.payment.db.entities.MoneyEntity;
 import za.co.tfradebe.vendingmachine.payment.db.repos.MoneyRepo;
 import za.co.tfradebe.vendingmachine.payment.exception.NotEnoughMoneyLoaded;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -29,7 +32,7 @@ public class PaymentServiceTest {
     @Test
     public void test_createChange_8(){
         var change = 8;
-        Map<AMOUNT,Integer> moneyOnTheMachine = new HashMap<>();
+        var moneyOnTheMachine = new HashMap<AMOUNT,Integer>();
         moneyOnTheMachine.put(TWO_HUNDRED_RAND,10);
         moneyOnTheMachine.put(ONE_HUNDRED_RAND,10);
         moneyOnTheMachine.put(FIFTY_RAND,10);
@@ -53,7 +56,7 @@ public class PaymentServiceTest {
     @Test
     public void test_createChange_18(){
         var change = 18;
-        Map<AMOUNT,Integer> moneyOnTheMachine = new HashMap<>();
+        var moneyOnTheMachine = new HashMap<AMOUNT,Integer>();
         moneyOnTheMachine.put(TWO_HUNDRED_RAND,10);
         moneyOnTheMachine.put(ONE_HUNDRED_RAND,10);
         moneyOnTheMachine.put(FIFTY_RAND,10);
@@ -76,7 +79,7 @@ public class PaymentServiceTest {
     @Test
     public void test_createChange_1(){
         var change = 1;
-        Map<AMOUNT,Integer> moneyOnTheMachine = new HashMap<>();
+        var moneyOnTheMachine = new HashMap<AMOUNT,Integer>();
         moneyOnTheMachine.put(TWO_HUNDRED_RAND,10);
         moneyOnTheMachine.put(ONE_HUNDRED_RAND,10);
         moneyOnTheMachine.put(FIFTY_RAND,10);
@@ -91,7 +94,42 @@ public class PaymentServiceTest {
 
     @Test
     public void test_calculateChange(){
-        Map<AMOUNT,Integer> moneyOnTheMachine = new HashMap<>();
+
+        when(moneyRepo.findAll()).thenReturn(getMoneyEntities());
+
+        var totalInCart = 40;
+        var moneyInserted = List.of(FIFTY_RAND);
+
+        var result = paymentService.calculateChange(totalInCart,moneyInserted);
+
+        assertNotNull(result);
+        assertEquals(1,result.size());
+    }
+
+    @Test
+    public void test_updateMoneyOnTheMachine(){
+        var entities = getMoneyEntities();
+
+        var newMoneyOnTheMachine = new HashMap<AMOUNT,Integer>();
+        newMoneyOnTheMachine.put(TWO_HUNDRED_RAND,5);
+        newMoneyOnTheMachine.put(ONE_HUNDRED_RAND,5);
+        newMoneyOnTheMachine.put(FIFTY_RAND,5);
+        newMoneyOnTheMachine.put(TWENTY_RAND,5);
+        newMoneyOnTheMachine.put(TEN_RAND,5);
+        newMoneyOnTheMachine.put(FIVE_RAND,5);
+        newMoneyOnTheMachine.put(TWO_RAND,5);
+        newMoneyOnTheMachine.put(ONE_RAND,5);
+
+        paymentService.updateMoneyOnTheMachine(entities,newMoneyOnTheMachine);
+
+        for(var entity: entities){
+            assertEquals(5,entity.getQuantity());
+        }
+    }
+
+    @Test
+    public void test_addInsertedMoneyToTheMachine(){
+        var moneyOnTheMachine = new HashMap<AMOUNT,Integer>();
         moneyOnTheMachine.put(TWO_HUNDRED_RAND,10);
         moneyOnTheMachine.put(ONE_HUNDRED_RAND,10);
         moneyOnTheMachine.put(FIFTY_RAND,10);
@@ -101,15 +139,28 @@ public class PaymentServiceTest {
         moneyOnTheMachine.put(TWO_RAND,10);
         moneyOnTheMachine.put(ONE_RAND,10);
 
-        when(moneyRepo.findAllAsMap()).thenReturn(moneyOnTheMachine);
+        var insertedMoney = List.of(TWO_RAND,ONE_RAND,FIFTY_RAND,TWENTY_RAND,TEN_RAND,FIVE_RAND,TWO_HUNDRED_RAND,ONE_HUNDRED_RAND);
 
-        var totalInCart = 40;
-        var moneyInserted = List.of(FIFTY_RAND);
+        paymentService.addInsertedMoneyToTheMachine(insertedMoney,moneyOnTheMachine);
 
-        var result = paymentService.calculateChange(totalInCart,moneyInserted);
+        for(var money: insertedMoney){
+            assertEquals(11,moneyOnTheMachine.get(money));
+        }
+    }
 
-        assertNotNull(result);
-        assertEquals(1,result.size());
+    private List<MoneyEntity> getMoneyEntities(){
+
+        var moneyOnTheMachine = new HashMap<AMOUNT,Integer>();
+        moneyOnTheMachine.put(TWO_HUNDRED_RAND,10);
+        moneyOnTheMachine.put(ONE_HUNDRED_RAND,10);
+        moneyOnTheMachine.put(FIFTY_RAND,10);
+        moneyOnTheMachine.put(TWENTY_RAND,10);
+        moneyOnTheMachine.put(TEN_RAND,10);
+        moneyOnTheMachine.put(FIVE_RAND,10);
+        moneyOnTheMachine.put(TWO_RAND,10);
+        moneyOnTheMachine.put(ONE_RAND,10);
+
+        return moneyOnTheMachine.entrySet().stream().map(amountIntegerEntry -> new MoneyEntity(amountIntegerEntry.getKey(),amountIntegerEntry.getValue())).collect(Collectors.toList());
     }
 
 }

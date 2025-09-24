@@ -21,10 +21,4 @@ public class MoneyRepoTest {
         assertNotNull(money);
         assertEquals(7, money.size());
     }
-    @Test
-    public void test_find_all_as_Map(){
-        var money = moneyRepo.findAllAsMap();
-        assertNotNull(money);
-        assertEquals(7, money.size());
-    }
 }
