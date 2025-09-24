@@ -4,14 +4,12 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductRequest;
 import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponse;
-import za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponseUtil;
 import za.co.tfradebe.vendingmachine.inventory.service.ProductService;
+import java.util.List;
+import static za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponseUtil.createSuccessResponse;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -28,7 +26,7 @@ public class ProductController {
     public ResponseEntity<ProductResponse> findAll() {
         try {
             var products = productService.findAll();
-            var response = ProductResponseUtil.createSuccessResponse(products);
+            var response = createSuccessResponse(products);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Something went wrong with findAll ", e);
@@ -37,10 +35,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> checkout(@Valid ProductRequest request) {
+    public ResponseEntity<ProductResponse> checkout(@Valid @RequestBody ProductRequest request) {
         try {
             productService.checkout(request);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(createSuccessResponse(List.of()),HttpStatus.ACCEPTED);
         } catch (Exception e) {
             log.error("Something went wrong with checkout: {}", request.toString(), e);
             throw e;
