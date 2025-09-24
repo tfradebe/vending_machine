@@ -1,0 +1,32 @@
+.product-list-container {
+  padding: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.product-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.product-card.out-of-stock {
+  opacity: 0.6;
+}
+
+.add-to-cart-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+}

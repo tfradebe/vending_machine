@@ -12,7 +12,7 @@ import java.util.List;
 import static za.co.tfradebe.vendingmachine.inventory.api.v1.dto.ProductResponseUtil.createSuccessResponse;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1")
 @Slf4j
 public class ProductController {
 
@@ -22,7 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/products")
     public ResponseEntity<ProductResponse> findAll() {
         try {
             var products = productService.findAll();
@@ -34,7 +34,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping
+    @PostMapping("checkout")
     public ResponseEntity<ProductResponse> checkout(@Valid @RequestBody ProductRequest request) {
         try {
             productService.checkout(request);

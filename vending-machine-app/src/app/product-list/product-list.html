@@ -1,1 +1,39 @@
-<p>product-list works!</p>
+<div class="product-list-container">
+  <h2>Vending Machine Products</h2>
+
+  <div *ngIf="loading" class="loading">
+    <p>Loading products...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadProducts()" class="retry-btn">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="product-grid">
+    <div *ngFor="let product of products"
+         class="product-card"
+         [class.out-of-stock]="isOutOfStock(product)">
+
+      <div class="product-header">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <span class="product-location">{{ product.location }}</span>
+      </div>
+
+      <div class="product-details">
+        <p class="product-price">R{{ product.price }}</p>
+        <p class="product-stock"
+           [class.low-stock]="product.quantity > 0 && product.quantity <= 5">
+          Stock: {{ product.quantity }}
+        </p>
+      </div>
+
+      <button
+        (click)="addToCart(product)"
+        [disabled]="isOutOfStock(product)"
+        class="add-to-cart-btn">
+        {{ isOutOfStock(product) ? 'Out of Stock' : 'Add to Cart' }}
+      </button>
+    </div>
+  </div>
+</div>
