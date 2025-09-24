@@ -3,6 +3,7 @@ import {Product} from '../models/product';
 import {ApiService} from '../services/api.service';
 import {CartService} from '../services/cart.service';
 import {NgFor, NgIf} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -20,8 +21,10 @@ export class ProductList implements OnInit {
   loading = true;
   error: string | null = null;
 
-  constructor(private apiService: ApiService, private cartService: CartService, private changeDetectorRef: ChangeDetectorRef
-  ) {
+  constructor(private apiService: ApiService
+              , protected cartService: CartService
+              , private router: Router
+    , private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -60,6 +63,10 @@ export class ProductList implements OnInit {
 
   isOutOfStock(product: Product): boolean {
     return product.quantity <= 0;
+  }
+
+  viewCart(): void {
+    this.router.navigate(['/cart']);
   }
 
 }

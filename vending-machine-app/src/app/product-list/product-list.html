@@ -10,6 +10,14 @@
     <button (click)="loadProducts()" class="retry-btn">Retry</button>
   </div>
 
+
+  <div *ngIf="!loading && !error" class="product-list-header">
+    <h2>Vending Machine Products</h2>
+    <button (click)="viewCart()" class="cart-button">
+      Cart ({{ cartService.totalItems() }})
+    </button>
+  </div>
+
   <div *ngIf="!loading && !error" class="product-grid">
     <div *ngFor="let product of products"
          class="product-card"
