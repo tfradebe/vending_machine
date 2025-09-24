@@ -23,9 +23,132 @@ response
 		]
 	}
 }
-
-
+==========================================================================================================================================
 GetMoneyInTheMachine
-Gets loaded money in the 
+Gets loaded money from the machine, was supposed to tell the person loading the machine what money is in the machine during loadup
 GET
 http://localhost:9090/api/v1/payment/moneyOnMachine
+//MoneyDenominator:quantity
+{
+	"200": 10,
+	"100": 10,
+	"50": 10,
+	"20": 10,
+	"10": 10,
+	"5": 10,
+	"2": 10
+}
+==========================================================================================================================================
+Pay
+Get total from card and inserted money calculate change and provide denominations to dispensed
+http://localhost:9090/api/v1/payment
+POST
+Request
+{
+	"cartTotal": 60,
+	"moneyInserted":[
+		100
+	]
+}
+Response
+{
+	"status": "SUCCESS",
+	"code": null,
+	"error": null,
+	"data": {
+		"change": 40,
+		"changeAsDenominators": [
+			20,
+			20
+		]
+	}
+}
+==========================================================================================================================================
+Order
+used on checkout and provide c
+http://localhost:9090/api/v1/checkout
+
+POST
+Request
+{
+  "data": [
+    {"id":1,"quantityRequired":3},
+		{"id":2,"quantityRequired":3}
+  ]
+}
+
+Response
+{
+	"status": "SUCCESS",
+	"code": null,
+	"error": null,
+	"data": []
+}
+==========================================================================================================================================
+Products
+Loads all the products to the frontent
+http://localhost:9090/api/v1/products
+
+Response
+{
+	"status": "SUCCESS",
+	"code": null,
+	"error": null,
+	"data": [
+		{
+			"id": 1,
+			"name": "SIMBA",
+			"location": "AA",
+			"price": 5,
+			"quantity": 10
+		},
+		{
+			"id": 2,
+			"name": "NICKNACK",
+			"location": "AB",
+			"price": 10,
+			"quantity": 10
+		},
+		{
+			"id": 3,
+			"name": "FANTA",
+			"location": "BA",
+			"price": 15,
+			"quantity": 10
+		},
+		{
+			"id": 4,
+			"name": "COCACOLA",
+			"location": "BB",
+			"price": 15,
+			"quantity": 10
+		},
+		{
+			"id": 5,
+			"name": "REDBULL",
+			"location": "CA",
+			"price": 25,
+			"quantity": 10
+		}
+	]
+}
+
+==========================================================================================================================================
+Dispense
+Dispense change with the given denominators
+http://localhost:9090/api/v1/dispense
+Request
+{
+		"change": 40,
+		"changeAsDenominators": [
+			20,
+			20
+		]
+}
+
+Response
+{
+	"status": "SUCCESS",
+	"code": null,
+	"error": null
+}
