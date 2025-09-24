@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 public class PaymentRequest {
-    @NotBlank(message = "Total is required")
     private Integer cartTotal;
     @NotNull( message = "Money is required")
     @NotEmpty( message = "Money is required")
