@@ -1,11 +1,12 @@
-
 <div class="app-container">
   <header class="app-header">
-    <h1>Vending Machine</h1>
+    <nav class="app-nav">
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    </nav>
   </header>
 
   <main>
-    <app-product-list></app-product-list>
+    <router-outlet></router-outlet>
   </main>
-
 </div>

@@ -12,7 +12,6 @@
 
 
   <div *ngIf="!loading && !error" class="product-list-header">
-    <h2>Vending Machine Products</h2>
     <button (click)="viewCart()" class="cart-button">
       Cart ({{ cartService.totalItems() }})
     </button>
