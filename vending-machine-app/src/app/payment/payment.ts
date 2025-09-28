@@ -1,10 +1,14 @@
 import {Component, inject, Input, OnInit, output} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {PaymentService} from '../services/PaymentService';
+import {CommonModule} from '@angular/common';
 import {Denomination, TFPaymentRequest, TFPaymentResponse} from '../models/payment';
 
 @Component({
   selector: 'app-payment',
+  imports: [
+    CommonModule
+  ],
   templateUrl: './payment.html',
   styleUrl: './payment.css'
 })
@@ -106,11 +110,7 @@ export class Payment implements OnInit{
   }
 
   formatAmount(amount: number): string {
-    if(amount >= 100){
-      return `R${amount / 100}`;
-    } else {
-      return `${amount}c`;
-    }
+    return `R${amount}`;
   }
 
   get canCalculateChange(): boolean {

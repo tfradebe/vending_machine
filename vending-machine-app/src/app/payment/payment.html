@@ -4,7 +4,6 @@
     <button (click)="cancelPayment()" class="close-btn">×</button>
   </div>
 
-  <!-- Payment Summary -->
   <div class="payment-summary">
     <div class="amount-row">
       <span class="label">Cart Total:</span>
@@ -22,14 +21,12 @@
     </div>
   </div>
 
-  <!-- Error Message -->
   @if (error) {
     <div class="error-message">
       {{ error }}
     </div>
   }
 
-  <!-- Inserted Money Display -->
   @if (insertedMoney().length > 0) {
     <div class="inserted-money-section">
       <h3>Inserted Money</h3>
@@ -44,7 +41,6 @@
     </div>
   }
 
-  <!-- Denominations Grid -->
   <div class="denominations-section">
     <h3>Select Denomination</h3>
 
@@ -67,7 +63,6 @@
     }
   </div>
 
-  <!-- Action Buttons -->
   <div class="payment-actions">
     <button
       (click)="calculateChange()"
@@ -94,7 +89,6 @@
     }
   </div>
 
-  <!-- Change Breakdown -->
   @if (changeCalculation && changeAmount > 0) {
     <div class="change-breakdown">
       <h3>Change Breakdown</h3>
@@ -112,7 +106,6 @@
     </div>
   }
 
-  <!-- Payment Processing Overlay -->
   @if (paymentProcessing) {
     <div class="processing-overlay">
       <div class="processing-spinner"></div>
