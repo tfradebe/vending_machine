@@ -1,0 +1,122 @@
+<div class="payment-container">
+  <div class="payment-header">
+    <h2>Insert Money</h2>
+    <button (click)="cancelPayment()" class="close-btn">×</button>
+  </div>
+
+  <!-- Payment Summary -->
+  <div class="payment-summary">
+    <div class="amount-row">
+      <span class="label">Cart Total:</span>
+      <span class="amount total-amount">R{{ cartTotal }}</span>
+    </div>
+    <div class="amount-row">
+      <span class="label">Inserted:</span>
+      <span class="amount inserted-amount" [class.insufficient]="totalInserted() < cartTotal">
+        R{{ totalInserted() }}
+      </span>
+    </div>
+    <div class="amount-row" *ngIf="changeAmount > 0">
+      <span class="label">Change:</span>
+      <span class="amount change-amount">R{{ changeAmount }}</span>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  @if (error) {
+    <div class="error-message">
+      {{ error }}
+    </div>
+  }
+
+  <!-- Inserted Money Display -->
+  @if (insertedMoney().length > 0) {
+    <div class="inserted-money-section">
+      <h3>Inserted Money</h3>
+      <div class="inserted-money-display">
+        @for (amount of insertedMoney(); track $index) {
+          <span class="money-chip" (click)="removeMoney(amount)">
+            {{ formatAmount(amount) }} ×
+          </span>
+        }
+        <button (click)="clearMoney()" class="clear-btn">Clear All</button>
+      </div>
+    </div>
+  }
+
+  <!-- Denominations Grid -->
+  <div class="denominations-section">
+    <h3>Select Denomination</h3>
+
+    @if (loading) {
+      <div class="loading">Loading denominations...</div>
+    } @else {
+      <div class="denominations-grid">
+        @for (denom of denominations(); track denom.value) {
+          <button
+            (click)="insertMoney(denom)"
+            class="denomination-btn"
+            [class.active]="denom.count > 0">
+            <span class="denom-value">{{ denom.label }}</span>
+            @if (denom.count > 0) {
+              <span class="denom-count">×{{ denom.count }}</span>
+            }
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="payment-actions">
+    <button
+      (click)="calculateChange()"
+      [disabled]="!canCalculateChange || loading"
+      class="action-btn calculate-btn">
+      @if (loading) {
+        Calculating...
+      } @else {
+        Calculate Change
+      }
+    </button>
+
+    @if (canConfirmPayment) {
+      <button
+        (click)="confirmPayment()"
+        [disabled]="paymentProcessing"
+        class="action-btn confirm-btn">
+        @if (paymentProcessing) {
+          Processing...
+        } @else {
+          Confirm Payment
+        }
+      </button>
+    }
+  </div>
+
+  <!-- Change Breakdown -->
+  @if (changeCalculation && changeAmount > 0) {
+    <div class="change-breakdown">
+      <h3>Change Breakdown</h3>
+      <div class="change-denominations">
+        @for (group of getChangeDenominationGroups(); track group.value) {
+          <div class="change-group">
+            <span class="denom-value">{{ formatAmount(group.value) }}</span>
+            <span class="denom-count">× {{ group.count }}</span>
+          </div>
+        }
+      </div>
+      <div class="change-total">
+        Total Change: R{{ changeAmount }}
+      </div>
+    </div>
+  }
+
+  <!-- Payment Processing Overlay -->
+  @if (paymentProcessing) {
+    <div class="processing-overlay">
+      <div class="processing-spinner"></div>
+      <p>Processing Payment...</p>
+    </div>
+  }
+</div>
